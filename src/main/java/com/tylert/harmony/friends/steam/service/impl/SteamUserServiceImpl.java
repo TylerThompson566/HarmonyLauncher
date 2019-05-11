@@ -9,6 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tylert.harmony.friends.steam.model.GetPlayerSummariesPlayer;
 import com.tylert.harmony.friends.steam.model.GetPlayerSummariesResponse;
 import com.tylert.harmony.friends.steam.service.SteamUserService;
 
@@ -51,7 +52,7 @@ public class SteamUserServiceImpl implements SteamUserService {
 	 * @return the player object for the user with the matching Steam ID
 	 * @throws JsonProcessingException
 	 */
-	public GetPlayerSummariesResponse getUser(String steamId) throws JsonProcessingException {
+	public GetPlayerSummariesPlayer getUser(String steamId) throws JsonProcessingException {
 
 		// get the url
 		String url = String.format("%s%s?key=%s&steamids=%s", baseUrl, getUserEndpoint, apiKey, steamId);
@@ -68,6 +69,10 @@ public class SteamUserServiceImpl implements SteamUserService {
 		}
 
 		// return the only player in the list of players in the response
-		return response;
+		GetPlayerSummariesPlayer user = response.getResponse().getPlayers().get(0);
+		if (log.isInfoEnabled()) {
+			log.info("User being returned: {}", objectMapper.writeValueAsString(user));
+		}
+		return user;
 	}
 }

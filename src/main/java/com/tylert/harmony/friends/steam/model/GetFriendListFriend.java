@@ -16,8 +16,9 @@ public class GetFriendListFriend {
 
 	/** Unix timestamp of the time when the relationship was created. */
 	private int friend_since;
-	
-	public GetFriendListFriend() {}
+
+	public GetFriendListFriend() {
+	}
 
 	public GetFriendListFriend(String steamid, String relationship, int friend_since) {
 		this.steamid = steamid;

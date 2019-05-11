@@ -1,7 +1,7 @@
 package com.tylert.harmony.friends.steam.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tylert.harmony.friends.steam.model.GetPlayerSummariesResponse;
+import com.tylert.harmony.friends.steam.model.GetPlayerSummariesPlayer;
 
 public interface SteamUserService {
 
@@ -12,5 +12,5 @@ public interface SteamUserService {
 	 * @return the player object for the user with the matching Steam ID
 	 * @throws JsonProcessingException
 	 */
-	public GetPlayerSummariesResponse getUser(String steamId) throws JsonProcessingException;
+	public GetPlayerSummariesPlayer getUser(String steamId) throws JsonProcessingException;
 }

@@ -1,7 +1,9 @@
 package com.tylert.harmony.friends.steam.service;
 
+import java.util.List;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.tylert.harmony.friends.steam.model.GetFriendListResponse;
+import com.tylert.harmony.friends.steam.model.GetFriendListFriend;
 
 /**
  * Steam Friends List Service Interface
@@ -18,5 +20,5 @@ public interface SteamFriendsService {
 	 * @return the list of the user's friends in a GetFriendListResponse object
 	 * @throws JsonProcessingException
 	 */
-	public GetFriendListResponse getFriendList(String steamId) throws JsonProcessingException;
+	public List<GetFriendListFriend> getFriendList(String steamId) throws JsonProcessingException;
 }
