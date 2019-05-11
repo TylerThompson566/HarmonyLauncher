@@ -67,14 +67,14 @@ public class SteamFriendsServiceImpl implements SteamFriendsService {
 		GetFriendListResponse response = restTemplate.getForObject(url, GetFriendListResponse.class);
 
 		// logging
-		if (log.isInfoEnabled()) {
-			log.info("retrieved friends list response: {}", objectMapper.writeValueAsString(response));
+		if (log.isDebugEnabled()) {
+			log.debug("retrieved friends list response: {}", objectMapper.writeValueAsString(response));
 		}
 
 		// return the response
 		List<GetFriendListFriend> friendsList = response.getFriendslist().getFriends();
-		if (log.isInfoEnabled()) {
-			log.info("returned friends list: {}", objectMapper.writeValueAsString(friendsList));
+		if (log.isDebugEnabled()) {
+			log.debug("returned friends list: {}", objectMapper.writeValueAsString(friendsList));
 		}
 		return friendsList;
 	}

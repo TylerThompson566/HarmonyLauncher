@@ -64,14 +64,14 @@ public class SteamUserServiceImpl implements SteamUserService {
 		GetPlayerSummariesResponse response = restTemplate.getForObject(url, GetPlayerSummariesResponse.class);
 
 		// logging
-		if (log.isInfoEnabled()) {
-			log.info("retrieved user summary response: {}", objectMapper.writeValueAsString(response));
+		if (log.isDebugEnabled()) {
+			log.debug("retrieved user summary response: {}", objectMapper.writeValueAsString(response));
 		}
 
 		// return the only player in the list of players in the response
 		GetPlayerSummariesPlayer user = response.getResponse().getPlayers().get(0);
-		if (log.isInfoEnabled()) {
-			log.info("User being returned: {}", objectMapper.writeValueAsString(user));
+		if (log.isDebugEnabled()) {
+			log.debug("User being returned: {}", objectMapper.writeValueAsString(user));
 		}
 		return user;
 	}

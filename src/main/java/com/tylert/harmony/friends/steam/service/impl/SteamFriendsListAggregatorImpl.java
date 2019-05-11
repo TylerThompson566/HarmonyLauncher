@@ -58,6 +58,7 @@ public class SteamFriendsListAggregatorImpl implements SteamFriendsListAggregato
 			throws InterruptedException, ExecutionException, CustomHarmonyException, JsonProcessingException {
 
 		// get the friends list from the Friends List response asynchronously
+		log.info("Getting Friends List from SteamFriendsService...");
 		CompletableFuture<List<GetFriendListFriend>> friendsServiceResponseFuture = CompletableFuture
 				.supplyAsync(() -> {
 					try {
@@ -81,6 +82,7 @@ public class SteamFriendsListAggregatorImpl implements SteamFriendsListAggregato
 		}
 
 		// make the API call for each friend in the friends list
+		log.info("Getting Steam Summary for all Friends in FriendsServiceResponse...");
 		friendsServiceResponse.stream().forEach(friend -> {
 			try {
 				friendsList.addFriend(userService.getUser(friend.getSteamid()));
@@ -91,8 +93,8 @@ public class SteamFriendsListAggregatorImpl implements SteamFriendsListAggregato
 		});
 
 		// return the friends list
-		if (log.isInfoEnabled()) {
-			log.info("Aggregated Friends List: {}", objectMapper.writeValueAsString(friendsList));
+		if (log.isDebugEnabled()) {
+			log.debug("Aggregated Friends List: {}", objectMapper.writeValueAsString(friendsList));
 		}
 		return friendsList;
 	}
