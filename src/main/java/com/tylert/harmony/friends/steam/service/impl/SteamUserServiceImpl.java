@@ -32,6 +32,7 @@ public class SteamUserServiceImpl implements SteamUserService {
 	@Value("${steam.baseurl}")
 	private String baseUrl;
 
+	/** GetUserSummaries endpoint */
 	@Value("${steam.user.endpoint}")
 	private String getUserEndpoint;
 

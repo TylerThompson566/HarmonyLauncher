@@ -32,6 +32,7 @@ public class SteamFriendsServiceImpl implements SteamFriendsService {
 	@Value("${steam.baseurl}")
 	private String baseUrl;
 
+	/** GetFriendsList endpoint */
 	@Value("${steam.friends.endpoint}")
 	private String getFriendsListEndpoint;
 
