@@ -1,5 +1,7 @@
 package com.tylert.harmony.friends.steam.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tylert.harmony.friends.steam.model.GetFriendListFriend;
 import com.tylert.harmony.friends.steam.model.GetFriendListResponse;
 import com.tylert.harmony.friends.steam.service.SteamFriendsService;
 
@@ -32,6 +35,7 @@ public class SteamFriendsServiceImpl implements SteamFriendsService {
 	@Value("${steam.baseurl}")
 	private String baseUrl;
 
+	/** GetFriendsList endpoint */
 	@Value("${steam.friends.endpoint}")
 	private String getFriendsListEndpoint;
 
@@ -50,7 +54,7 @@ public class SteamFriendsServiceImpl implements SteamFriendsService {
 	 * @return the list of the user's friends in a GetFriendListResponse object
 	 * @throws JsonProcessingException
 	 */
-	public GetFriendListResponse getFriendList(String steamId) throws JsonProcessingException {
+	public List<GetFriendListFriend> getFriendList(String steamId) throws JsonProcessingException {
 
 		// get the url
 		String url = String.format("%s%s?key=%s&steamid=%s&relationship=friend", baseUrl, getFriendsListEndpoint,
@@ -68,6 +72,10 @@ public class SteamFriendsServiceImpl implements SteamFriendsService {
 		}
 
 		// return the response
-		return response;
+		List<GetFriendListFriend> friendsList = response.getFriendslist().getFriends();
+		if (log.isInfoEnabled()) {
+			log.info("returned friends list: {}", objectMapper.writeValueAsString(friendsList));
+		}
+		return friendsList;
 	}
 }

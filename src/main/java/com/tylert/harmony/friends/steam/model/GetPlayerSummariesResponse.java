@@ -10,9 +10,10 @@ public class GetPlayerSummariesResponse {
 
 	/** List of players in the response */
 	GetPlayerSummariesResponseResponse response;
-	
-	public GetPlayerSummariesResponse() {}
-	
+
+	public GetPlayerSummariesResponse() {
+	}
+
 	public GetPlayerSummariesResponse(GetPlayerSummariesResponseResponse response) {
 		this.response = response;
 	}

@@ -88,8 +88,9 @@ public class GetPlayerSummariesPlayer {
 	 * residence, 2-character ISO country code
 	 */
 	private String loccountrycode;
-	
-	public GetPlayerSummariesPlayer() {}
+
+	public GetPlayerSummariesPlayer() {
+	}
 
 	public GetPlayerSummariesPlayer(String steamid, int communityvisibilitystate, int profilestate, String personaname,
 			int lastlogoff, int commentpermission, String profileurl, String avatar, String avatarmedium,
